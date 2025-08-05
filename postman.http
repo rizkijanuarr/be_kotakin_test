@@ -1,0 +1,155 @@
+### Audit
+# @name audit
+GET {{BASE_URL}}/api/audits
+
+
+### Register
+# @name register
+POST {{BASE_URL}}/api/register
+
+{
+  "name": "kiki",
+  "email": "kiki@example.com",
+  "password": "password",
+  "password_confirmation": "password"
+}
+
+########################################
+# Route Admin
+
+### Login Admin
+# @name loginAdmin
+POST {{BASE_URL}}/api/v1/admin/login
+
+{
+  "email": "admin@kotakin.id",
+  "password": "password"
+}
+
+> {%
+  console.log('Login Response:', response.body);
+  client.global.set('ACCESS_TOKEN', response.body.data.token);
+%}
+
+### Logout Admin
+# @name logoutAdmin
+POST {{BASE_URL}}/api/v1/admin/logout
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+> {%
+  console.log('Logout Status:', response.status);
+  console.log('Logout Response:', response.body);
+  client.global.clear('ACCESS_TOKEN');
+%}
+
+### ME Admin
+# @name meAdmin
+GET {{BASE_URL}}/api/v1/admin/me
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### Refresh Token Admin
+# @name ME
+POST {{BASE_URL}}/api/v1/admin/refresh-token
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### Dashboard Admin
+# @name dashboardAdmin
+GET {{BASE_URL}}/api/v1/admin/dashboard
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+
+### Get Products Admin
+# @name getProductsAdmin
+GET {{BASE_URL}}/api/v1/admin/products
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### Create Products Admin
+# @name createProductAdmin
+POST {{BASE_URL}}/api/v1/admin/products
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{$timestamp}}
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="image"; filename="vape.jpg"
+Content-Type: image/jpeg
+
+< ~/Downloads/vape.jpg
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="title"
+
+Vape X-Thunder
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="description"
+
+Lorem Ipsum Dolor si Amet.
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="stock"
+
+100
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="price"
+
+2000000
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="weight"
+
+500
+
+### Detail Products By :id Admin
+# @name detailProductsByIdAdmin
+GET {{BASE_URL}}/api/v1/admin/products/55e82511-8b97-44d6-a3fb-2961b465d068
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+
+### Update Products By :id Admin
+# @name updateProductByIdAdmin
+POST {{BASE_URL}}/api/v1/admin/products/55e82511-8b97-44d6-a3fb-2961b465d068
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary{{$timestamp}}
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="title"
+
+Vape Gokil Update
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="description"
+
+Lorem Ipsum Dolor si Amet Update.
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="stock"
+
+10000
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="price"
+
+2000000
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="weight"
+
+5000
+
+------WebKitFormBoundary{{$timestamp}}
+Content-Disposition: form-data; name="_method"
+
+PUT
+
+
+### Delete Products By :id Admin
+# @name deleteProductByIdAdmin
+DELETE {{BASE_URL}}/api/v1/admin/products/55e82511-8b97-44d6-a3fb-2961b465d068
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+
+#################################################
+
+
+
