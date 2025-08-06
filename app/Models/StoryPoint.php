@@ -9,25 +9,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
 
-class Role extends Model implements Auditable
+class StoryPoint extends Model implements Auditable
 {
     use HasFactory;
     use SoftDeletes;
     use UUID;
     use AuditableTrait;
 
-    protected $table = 'roles';
+    protected $table = 'story_points';
 
     protected $fillable = [
         'name',
+        'value',
+        'hours',
         'is_active'
     ];
 
-    // Audit only create, update, delete
     protected $auditEvents = ['created','updated','deleted'];
 
-    public function users()
+    public function todos()
     {
-        return $this->hasMany(\App\Models\User::class);
+        return $this->hasMany(\App\Models\Todo::class);
     }
 }

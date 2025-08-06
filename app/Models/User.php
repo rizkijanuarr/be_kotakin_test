@@ -8,14 +8,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Auditable as AuditableTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, Auditable
 {
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
     use UUID;
+    use AuditableTrait;
+
+    protected $table = 'users';
 
     protected $fillable = [
         'name',
@@ -25,11 +30,18 @@ class User extends Authenticatable implements JWTSubject
         'is_active'
     ];
 
+    protected $auditEvents = ['created','updated','deleted'];
+
     protected $hidden = ['password', 'remember_token'];
 
     public function role()
     {
         return $this->belongsTo(\App\Models\Role::class);
+    }
+
+    public function todos()
+    {
+        return $this->hasMany(\App\Models\Todo::class);
     }
 
     protected function name(): Attribute

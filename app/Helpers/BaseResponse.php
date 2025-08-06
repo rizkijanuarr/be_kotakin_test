@@ -31,4 +31,9 @@ class BaseResponse
     {
         return self::error($message, [], 401);
     }
+
+    public static function notFound($message = 'Not Found!')
+    {
+        return self::error($message, [], 404);
+    }
 }

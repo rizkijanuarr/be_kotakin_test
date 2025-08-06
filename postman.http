@@ -17,6 +17,9 @@ POST {{BASE_URL}}/api/register
 ########################################
 # Route Admin
 
+
+# MODULE AUTHENTICATION!!!
+
 ### Login Admin
 # @name loginAdmin
 POST {{BASE_URL}}/api/v1/admin/login
@@ -58,9 +61,127 @@ GET {{BASE_URL}}/api/v1/admin/dashboard
 Authorization: Bearer {{ACCESS_TOKEN}}
 
 
+### MODULE STATUS!!!
+### GET STATUS
+# @name getStatus
+GET {{BASE_URL}}/api/v1/admin/status
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### CREATE STATUS
+# @name createStatus
+POST {{BASE_URL}}/api/v1/admin/status
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+{
+  "name": "Oasasa",
+  "color": "#1211"
+}
+
+### UPDATE STATUS
+# @name updateStatus
+PUT {{BASE_URL}}/api/v1/admin/status/43c10828-1b4e-476e-bab5-3f5d8ef24084
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+{
+  "name": "Oasasa UPDATE",
+  "color": "#1211"
+}
+
+### DETAILS STATUS
+# @name detailsStatus
+GET {{BASE_URL}}/api/v1/admin/status/43c10828-1b4e-476e-bab5-3f5d8ef24084
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### DELETE STATUS
+# @name deleteStatus
+DELETE {{BASE_URL}}/api/v1/admin/status/43c10828-1b4e-476e-bab5-3f5d8ef24084
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+
+### MODULE STORY POINT!!!
+### GET SP
+# @name getSP
+GET {{BASE_URL}}/api/v1/admin/story-point
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### CREATE SP
+# @name createSP
+POST {{BASE_URL}}/api/v1/admin/story-point
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+{
+  "name": "JUMBO",
+  "value": "JUMBO",
+  "hours": "12"
+}
+
+### UPDATE SP
+# @name updateSP
+PUT {{BASE_URL}}/api/v1/admin/story-point/3ce4e4d8-8510-4c98-9cb1-7b7082895215
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+{
+  "name": "JUMBO UPDATE",
+  "value": "JUMBO UPDATE",
+  "hours": "15"
+}
+
+### DETAILS SP
+# @name detailsSP
+GET {{BASE_URL}}/api/v1/admin/story-point/3ce4e4d8-8510-4c98-9cb1-7b7082895215
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### DELETE SP
+# @name deleteSP
+DELETE {{BASE_URL}}/api/v1/admin/story-point/3ce4e4d8-8510-4c98-9cb1-7b7082895215
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+
+### MODULE TODO!!!
+### GET TD
+# @name getTD
+GET {{BASE_URL}}/api/v1/admin/todo
+Authorization: Bearer {{ACCESS_TOKEN}}
+
+### CREATE TD
+# @name createTD
+POST {{BASE_URL}}/api/v1/admin/todo
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: application/json
+
+{
+  "status_id": "cf4321b3-f22d-4e5f-8d7c-b50798572062",
+  "story_point_id": "381c5601-ab32-4046-9ad3-e67d1b37f355",
+  "title": "Initial Project Laravel",
+  "description": "Minggu ini akan memulai untuk intial Project Laravel!"
+}
+
+### UPDATE TD
+# @name updateTD
+PUT {{BASE_URL}}/api/v1/admin/todo/669080b6-3a9d-498d-9547-13cfc109fe57
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: application/json
+
+{
+  "status_id": "1c1ac187-1e0f-4984-a8cb-27226accf993"
+}
+
+### DETAILS TD
+# @name detailsTD
+GET {{BASE_URL}}/api/v1/admin/todo/669080b6-3a9d-498d-9547-13cfc109fe57
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: application/json
+
+### DELETE TD
+# @name deleteTD
+DELETE {{BASE_URL}}/api/v1/admin/todo/669080b6-3a9d-498d-9547-13cfc109fe57
+Authorization: Bearer {{ACCESS_TOKEN}}
+Content-Type: application/json
+
+
 ### Get Products Admin
 # @name getProductsAdmin
-GET {{BASE_URL}}/api/v1/admin/products
+GET {{BASE_URL}}/api/v1/admin/status
 Authorization: Bearer {{ACCESS_TOKEN}}
 
 ### Create Products Admin
